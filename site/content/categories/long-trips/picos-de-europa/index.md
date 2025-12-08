@@ -7,7 +7,6 @@ resources:
   - src: cover.jpg
     params:
       cover: true
-      hidden: true
 ---
 
 Our trip to the fascinating Picos de Europa, in Spain. Going to the mountains, Covadonga lakes and church, and a lot of curves.
