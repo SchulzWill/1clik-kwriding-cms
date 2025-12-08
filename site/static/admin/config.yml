@@ -13,12 +13,12 @@ logo_url: /img/logo.png
 
 collections:
   # ============================================
-  # TRIPS - Photo Albums
+  # LONG TRIPS - Multi-day adventures
   # ============================================
-  - name: "trips"
-    label: "Trips"
-    label_singular: "Trip"
-    folder: "site/content/trips"
+  - name: "long-trips"
+    label: "Long Trips"
+    label_singular: "Long Trip"
+    folder: "site/content/categories/long-trips"
     create: true
     nested:
       depth: 2
@@ -41,9 +41,8 @@ collections:
         widget: "select"
         multiple: true
         options:
-          - { label: "Adventure", value: "adventure" }
-          - { label: "Day Trip", value: "day-trips" }
-          - { label: "Scenic Route", value: "scenic-routes" }
+          - { label: "Long Trips", value: "long-trips" }
+          - { label: "Day Trips", value: "day-trips" }
         hint: "Select one or more categories"
       - label: "Featured"
         name: "featured"
@@ -61,6 +60,45 @@ collections:
         name: "body"
         widget: "markdown"
         hint: "Detailed trip description, route info, highlights"
+
+  # ============================================
+  # DAY TRIPS - Single-day rides
+  # ============================================
+  - name: "day-trips"
+    label: "Day Trips"
+    label_singular: "Day Trip"
+    folder: "site/content/categories/day-trips"
+    create: true
+    nested:
+      depth: 2
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Name of your day trip"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        hint: "When did this ride happen?"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "Brief description shown in album listings"
+      - label: "Categories"
+        name: "categories"
+        widget: "hidden"
+        default: ["day-trips"]
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Show this on the homepage?"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Trip description, route info, highlights"
 
   # ============================================
   # PAGES - Static Pages

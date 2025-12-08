@@ -1,9 +1,9 @@
 ---
-title: Day Trips
-description: Single-day rides and local explorations
+title: Long Trips
+description: Multi-day motorcycle adventures and tours across Europe
 menu:
   main:
-    weight: 20
+    weight: 10
 params:
   featured: true
 resources:
@@ -11,3 +11,4 @@ resources:
     params:
       cover: true
 ---
+

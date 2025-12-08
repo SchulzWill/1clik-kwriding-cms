@@ -14,14 +14,14 @@ timeout = "120s"
 # Theme parameters
 [params]
   defaultTheme = "dark"
-  description = "Motorcycle travel blog and vlog"
+  description = "Motorcycle trip planning, tours, and routes by Kay & Will — Brazilians exploring the world on two wheels"
   title = "KW Riding"
   [params.author]
-    name = "KW Riding"
+    name = "Kay & Will"
+    email = ""
   [params.socialIcons]
-    # Add your social links here
-    # instagram = "https://www.instagram.com/yourhandle/"
-    # youtube = "https://www.youtube.com/@yourchannel"
+    instagram = "https://www.instagram.com/kwriding/"
+    youtube = "https://www.youtube.com/@KWRiding"
 
 # Output formats
 [outputs]
