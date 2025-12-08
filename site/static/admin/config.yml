@@ -2,82 +2,179 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "site/static/img" # Folder where user uploaded files should go
-public_folder: "img"
+# Media files location
+media_folder: "site/static/img"
+public_folder: "/img"
 
-collections: # A list of collections the CMS should be able to edit
-  - name: "post" # Used in routes, ie.: /admin/collections/:slug/edit
-    label: "Post" # Used in the UI, ie.: "New Post"
-    folder: "site/content/post" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    fields: # The fields each document in this collection have
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Intro Blurb", name: "description", widget: "text"}
-      - {label: "Image", name: "image", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+# Site settings
+site_url: https://kwriding.netlify.app
+display_url: https://kwriding.netlify.app
+logo_url: /img/logo.png
+
+collections:
+  # ============================================
+  # LONG TRIPS - Multi-day adventures
+  # ============================================
+  - name: "long-trips"
+    label: "Long Trips"
+    label_singular: "Long Trip"
+    folder: "site/content/categories/long-trips"
+    create: true
+    nested:
+      depth: 2
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Name of your trip/adventure"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        hint: "When did this trip happen?"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "Brief description shown in album listings"
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Long Trips", value: "long-trips" }
+          - { label: "Day Trips", value: "day-trips" }
+        hint: "Select one or more categories"
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Show this trip on the homepage?"
+      - label: "Private"
+        name: "private"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Hide from public listings (accessible by direct link only)"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Detailed trip description, route info, highlights"
+
+  # ============================================
+  # DAY TRIPS - Single-day rides
+  # ============================================
+  - name: "day-trips"
+    label: "Day Trips"
+    label_singular: "Day Trip"
+    folder: "site/content/categories/day-trips"
+    create: true
+    nested:
+      depth: 2
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Name of your day trip"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        hint: "When did this ride happen?"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "Brief description shown in album listings"
+      - label: "Categories"
+        name: "categories"
+        widget: "hidden"
+        default: ["day-trips"]
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Show this on the homepage?"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Trip description, route info, highlights"
+
+  # ============================================
+  # PAGES - Static Pages
+  # ============================================
   - name: "pages"
     label: "Pages"
     files:
+      # Homepage
       - file: "site/content/_index.md"
-        label: "Home Page"
+        label: "Homepage"
         name: "home"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Subtitle, name: subtitle, widget: string}
-          - {label: Image, name: image, widget: image}
-          - {label: "Blurb", name: blurb, widget: object, fields: [
-              {label: "Heading", name: "heading", widget: string},
-              {label: "Text", name: "text", widget: "text"}]}
-          - {label: "Intro", name: intro, widget: object, fields: [
-              {label: "Heading", name: "heading", widget: string},
-              {label: "Text", name: "text", widget: "text"}]}
-          - {label: "Products", name: products, widget: list, fields: [
-              {label: "Image", name: "image", widget: "image"},
-              {label: "Text", name: "text", widget: "text"}]}
-          - {label: "Values", name: "values", widget: "object", fields: [
-              {label: "Heading", name: "heading", widget: string},
-              {label: "Text", name: "text", widget: "text"}]}
-      - file: "site/content/contact/_index.md"
-        label: "Contact Page"
-        name: "contact"
+          - label: "Site Title"
+            name: "title"
+            widget: "string"
+          - label: "Site Description"
+            name: "description"
+            widget: "text"
+            hint: "Used for SEO and social sharing"
+
+      # About Page
+      - file: "site/content/about.md"
+        label: "About Page"
+        name: "about"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Logo, name: logo, widget: image}
-          - {label: Body, name: body, widget: markdown}
-          - label: Contact Entries
-            name: contact_entries
-            widget: list
-            fields:
-              - label: Heading
-                name: heading
-                widget: string
-              - label: Text
-                name: text
-                widget: text
-      - file: "site/content/products/_index.md"
-        label: "Products Page"
-        name: "products"
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Layout"
+            name: "layout"
+            widget: "hidden"
+            default: "prose"
+          - label: "Content"
+            name: "body"
+            widget: "markdown"
+            hint: "Tell your story - who you are, what you ride, your passion for motorcycles"
+
+      # Gear Page
+      - file: "site/content/gear/index.md"
+        label: "Gear Page"
+        name: "gear"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Image, name: image, widget: image}
-          - {label: Heading, name: heading, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
-          - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}]}
-          - {label: Testimonials, name: testimonials, widget: list, fields: [{label: Quote, name: quote, widget: string}, {label: Author, name: author, widget: string}]}
-          - {label: Full_image, name: full_image, widget: image}
-          - {label: Pricing, name: pricing, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: string}, {label: Plans, name: plans, widget: list, fields: [{label: Plan, name: plan, widget: string}, {label: Price, name: price, widget: string}, {label: Description, name: description, widget: string}, {label: Items, name: items, widget: list}]}]}
-      - file: "site/content/values/_index.md"
-        label: "Values Page"
-        name: "values"
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Date"
+            name: "date"
+            widget: "datetime"
+          - label: "Description"
+            name: "description"
+            widget: "text"
+          - label: "Content"
+            name: "body"
+            widget: "markdown"
+            hint: "Describe your motorcycle, camera gear, riding equipment"
+
+  # ============================================
+  # SETTINGS - Site Configuration
+  # ============================================
+  - name: "settings"
+    label: "Settings"
+    files:
+      - file: "site/config.toml"
+        label: "Site Settings"
+        name: "config"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Image, name: image, widget: image}
-          - label: Values
-            name: values
-            widget: list
-            fields:
-              - {label: Heading, name: heading, widget: string}
-              - {label: Text, name: text, widget: text}
-              - {label: Image, name: imageUrl, widget: image}
+          - label: "Site URL"
+            name: "baseurl"
+            widget: "string"
+          - label: "Site Title"
+            name: "title"
+            widget: "string"
+          - label: "Copyright"
+            name: "copyright"
+            widget: "string"
+          - label: "Language Code"
+            name: "languageCode"
+            widget: "string"
+            default: "en-us"

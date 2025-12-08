@@ -1,9 +1,46 @@
 baseurl = "/"
 languageCode = "en-us"
-languageLang = "en"
-title = "Homepage"
+title = "KW Riding"
+copyright = "© KW Riding"
 
-# RSS, categories and tags disabled for an easy start
-# See configuration options for more details: 
-# https://gohugo.io/getting-started/configuration/#toml-configuration
-disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+# Theme configuration
+themesDir = "../themes"
+theme = "theme-gallery"
+
+# Enable for gallery theme
+enableRobotsTXT = true
+timeout = "120s"
+
+# Theme parameters
+[params]
+  defaultTheme = "dark"
+  description = "Motorcycle trip planning, tours, and routes by Kay & Will — Brazilians exploring the world on two wheels"
+  title = "KW Riding"
+  [params.author]
+    name = "Kay & Will"
+    email = ""
+  [params.socialIcons]
+    instagram = "https://www.instagram.com/kwriding/"
+    youtube = "https://www.youtube.com/@KWRiding"
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML"]
+
+# Image processing
+[imaging]
+  quality = 75
+  resampleFilter = "CatmullRom"
+  [imaging.exif]
+    disableDate = false
+    disableLatLong = true
+    includeFields = "ImageDescription|Orientation"
+
+# Menu
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
