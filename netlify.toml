@@ -1,13 +1,13 @@
 [build.environment]
-  NETLIFY_USE_YARN = "true"
+  NETLIFY_USE_YARN = "false"
   YARN_VERSION = "1.22.17"
 
 [build]
-  command = "yarn build"
+  command = "npm build"
   publish = "dist"
 
 [context.deploy-preview]
-  command = "yarn build:preview"
+  command = "npm build:preview"
 
 [dev]
   framework = "hugo"
