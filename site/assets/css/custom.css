@@ -1,0 +1,38 @@
+/* Site overrides for theme-gallery.
+   The theme's `assets/css/main.scss` imports `custom` — placing this file in
+   `site/assets/css/custom.css` overrides the theme's `custom.css` without
+   editing the theme submodule. */
+
+/* Theater-mode hero video: centered and wide (80% viewport width). */
+main > section.trip-hero {
+  width: 80vw;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  /* override theme default (main > section) padding */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Responsive embeds (video/map) */
+.trip-embed {
+  position: relative;
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.trip-embed--video,
+.trip-embed--map {
+  aspect-ratio: 16 / 9;
+}
+
+.trip-embed > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
