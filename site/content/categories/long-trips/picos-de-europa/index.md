@@ -3,7 +3,7 @@ date: 2024-04-01
 title: Picos de Europa
 description: Our trip to the fascinating Picos de Europa, in Spain
 categories: ["long-trips"]
-youtube_id: dQw4w9WgXcQ
+youtube_id: yeg2eFlBGGI
 map_embed_url: ""
 route_store_url: ""
 route_store_label: ""

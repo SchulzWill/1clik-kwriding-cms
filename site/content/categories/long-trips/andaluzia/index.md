@@ -3,7 +3,7 @@ date: 2024-03-01
 title: Andaluzia
 description: Amazing trip through Andalucia
 categories: ["long-trips"]
-youtube_id: "REPLACE_ME"
+youtube_id: "dxJUplScsXs"
 map_embed_url: ""
 route_store_url: ""
 route_store_label: ""
