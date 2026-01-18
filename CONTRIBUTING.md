@@ -1,49 +1,43 @@
 # CONTRIBUTING
 
-Contributions are always welcome, no matter how large or small. Before contributing,
-please read the [code of conduct](CODE_OF_CONDUCT.md).
+Contributions are always welcome, no matter how large or small. Before contributing, please read the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## Setup
 
-```sh
-$ git clone https://github.com/netlify/victor-hugo
-$ cd victor-hugo
-$ npm install
+```bash
+git clone <your-fork-url>
+cd 1clik-kwriding-cms
+git submodule update --init --recursive
+yarn install
 ```
 
 ## Building
 
-```sh
-$ npm run build
+```bash
+yarn build
 ```
 
-## Testing
+Deploy-preview build (includes drafts + future content):
 
-```sh
-$ npm run test
+```bash
+yarn build:preview
 ```
 
-```sh
-$ npm run test:watch
-```
+## Development
 
-## Running the server
-
-```sh
-$ npm run start
+```bash
+yarn start
 ```
 
 ## Pull Requests
 
-We actively welcome your pull requests.
+We actively welcome pull requests.
 
-1. Fork the repo and create your branch from `master`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Make sure your code lints.
+1. Fork the repo and create your branch from `main`.
+2. Keep changes focused and describe the intent in the PR description.
+3. If you changed content structure or build behavior, update `README.md` and/or `agents.md`.
+4. Ensure `yarn build:preview` passes.
 
 ## License
 
-By contributing to Victor-Hugo, you agree that your contributions will be licensed
-under its [MIT license](LICENSE).
+By contributing to KW Riding, you agree that your contributions will be licensed under its [MIT license](LICENSE).

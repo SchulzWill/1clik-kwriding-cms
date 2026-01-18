@@ -1,46 +1,119 @@
-# Hugo template for Netlify CMS with Netlify Identity
+# KW Riding
 
-This is a small business template built with [Hugo](https://gohugo.io) and [Netlify CMS](https://github.com/netlify/netlify-cms), designed and developed by [Darin Dimitroff](https://twitter.com/deezel), [spacefarm.digital](https://www.spacefarm.digital).
+KW Riding is a motorcycle travel blog and vlog by Kay & Will. The site showcases trip galleries (long trips and day trips), embeds the trip videos, and promotes route-planning services and route downloads.
 
-## Getting started
+- **Production site**: `https://kwriding.netlify.app`
 
-Use our deploy button to get your own copy of the repository. 
+## Stack
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/one-click-hugo-cms&stack=cms)
+- **Static site generator**: Hugo (Extended)
+- **Theme**: `themes/theme-gallery/` (git submodule, custom fork)
+- **CMS**: Netlify CMS (git-gateway) at `/admin`
+- **Hosting**: Netlify
+- **Assets tooling**: Webpack
+- **Package manager**: **Yarn (required)** — do not use npm
 
-This will setup everything needed for running the CMS:
+## Requirements
 
-* A new repository in your GitHub account with the code
-* Full Continuous Deployment to Netlify's global CDN network
-* Control users and access with Netlify Identity
-* Manage content with Netlify CMS
+- **Node.js** (use a modern LTS)
+- **Yarn v1**
+- **Git submodules** (for the theme)
 
-Once the initial build finishes, you can invite yourself as a user. Go to the Identity tab in your new site, click "Invite" and send yourself an invite.
+## Local development
 
-Now you're all set, and you can start editing content!
+Install dependencies:
 
-## Local Development
-
-Clone this repository, and run `yarn` or `npm install` from the new folder to install all required dependencies.
-
-Then start the development server with `yarn start` or `npm start`.
-
-## Layouts
-
-The template is based on small, content-agnostic partials that can be mixed and matched. The pre-built pages showcase just a few of the possible combinations. Refer to the `site/layouts/partials` folder for all available partials.
-
-Use Hugo’s `dict` functionality to feed content into partials and avoid repeating yourself and creating discrepancies.
-
-## CSS
-
-The template uses a custom fork of Tachyons and PostCSS with cssnext and cssnano. To customize the template for your brand, refer to `src/css/imports/_variables.css` where most of the important global variables like colors and spacing are stored.
-
-## SVG
-
-All SVG icons stored in `site/static/img/icons` are automatically optimized with SVGO (gulp-svgmin) and concatenated into a single SVG sprite stored as a a partial called `svg.html`. Make sure you use consistent icons in terms of viewport and art direction for optimal results. Refer to an SVG via the `<use>` tag like so:
-
+```bash
+cd /Users/wsm/Git/private/1clik-kwriding-cms
+yarn install
 ```
-<svg width="16px" height="16px" class="db">
-  <use xlink:href="#SVG-ID"></use>
-</svg>
+
+Initialize the theme submodule (only needed on first clone):
+
+```bash
+git submodule update --init --recursive
 ```
+
+Run the dev server:
+
+```bash
+yarn start
+```
+
+Build for production:
+
+```bash
+yarn build
+```
+
+Build deploy-preview (includes drafts + future content):
+
+```bash
+yarn build:preview
+```
+
+## Where to edit content
+
+All Hugo content is inside `site/content/`.
+
+- **Homepage**: `site/content/_index.md`
+- **Trips (albums)**: `site/content/categories/`
+  - **Long trips**: `site/content/categories/long-trips/<trip-slug>/index.md`
+  - **Day trips**: `site/content/categories/day-trips/<trip-slug>/index.md`
+
+Each trip is a **page bundle** (folder with `index.md` and assets).
+
+## Required cover rules (important)
+
+The gallery theme requires at least one image resource per trip for it to appear in listings.
+
+- Each trip folder must include a **`cover.jpg`**
+- The trip front matter must include:
+
+```yaml
+resources:
+  - src: cover.jpg
+    params:
+      cover: true
+```
+
+The cover is used on the home/gallery and list pages. The trip page itself hides the cover image.
+
+## Trip pages: video hero + optional map/store blocks
+
+Trip single pages (under `site/content/categories/**`) are rendered with a site override layout so all trips share the same structure.
+
+In each trip’s front matter you can set:
+
+- `youtube_id`: YouTube video ID (shows as the hero video)
+- `map_embed_url`: iframe-ready embed URL (optional)
+- `route_store_url`: external store URL (optional)
+- `route_store_label`: button label override (optional)
+
+Example:
+
+```yaml
+youtube_id: dQw4w9WgXcQ
+map_embed_url: ""
+route_store_url: ""
+route_store_label: ""
+```
+
+Your markdown body (`.Content`) remains fully rendered for SEO (intro + headings like `## Highlights`, `## The Riding`, etc.).
+
+## Where the overrides live
+
+We avoid editing the theme submodule directly. Site-level overrides live in:
+
+- **Trip layout override**: `site/layouts/categories/single.html`
+- **Trip partials**: `site/layouts/partials/` (`trip-video.html`, `trip-map.html`, `trip-gallery.html`, `trip-route-callout.html`)
+- **Post-theme CSS overrides** (loaded after the theme CSS):
+  - `site/layouts/partials/head-custom.html`
+  - `site/static/css/kwriding-overrides.css`
+
+## Netlify CMS
+
+Netlify CMS config:
+- `site/static/admin/config.yml`
+
+Once deployed, the CMS is available at `/admin` on your Netlify site.

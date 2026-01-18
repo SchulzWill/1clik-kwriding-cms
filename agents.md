@@ -113,6 +113,10 @@ date: 2024-04-01
 title: Trip Name
 description: Brief description shown in listings
 categories: ["long-trips"]  # or ["day-trips"]
+youtube_id: dQw4w9WgXcQ     # YouTube video ID (trip page hero)
+map_embed_url: ""           # Optional iframe embed URL (Google Maps/MyMaps)
+route_store_url: ""         # Optional external store link (Gumroad/Payhip/etc.)
+route_store_label: ""       # Optional button label override
 resources:
   - src: cover.jpg
     params:
@@ -228,8 +232,28 @@ resources:
 #### Trip Pages
 - Include detailed description in body
 - Use markdown headings for structure (## Highlights, ## Route, etc.)
-- Can embed YouTube videos using Hugo shortcode: `{{< youtube VIDEO_ID >}}`
+- **Video hero is theme-driven**: set `youtube_id` in front matter (preferred for consistent layout)
 - Include route information, highlights, and personal experiences
+
+### 9.1 Trip Page Layout Overrides (important)
+
+Trip pages (`site/content/categories/**/<trip>/index.md`) use a **site-level layout override** so changes apply across all trips without editing the theme submodule.
+
+- **Trip single layout**: `site/layouts/categories/single.html`
+- **Trip partials**: `site/layouts/partials/`
+  - `trip-video.html` (YouTube hero)
+  - `trip-map.html` (optional map)
+  - `trip-gallery.html` (gallery excluding cover image)
+  - `trip-route-callout.html` (external route purchase link)
+
+### 9.2 Post-theme CSS overrides (important)
+
+The theme compiles CSS via Hugo Pipes (from `themes/theme-gallery/assets/css/main.scss`). To override theme styles without editing the theme, we load a small CSS file **after** the theme CSS:
+
+- **Hook point**: `site/layouts/partials/head-custom.html`
+- **CSS file**: `site/static/css/kwriding-overrides.css`
+
+Use this for layout tweaks like “theater mode” video centering.
 
 #### About Page
 - Uses `layout: prose` for better typography
