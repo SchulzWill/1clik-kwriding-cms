@@ -1,0 +1,22 @@
+{{ $youtubeID := .Params.youtube_id | default "" }}
+{{ if $youtubeID }}
+  <section class="trip-hero">
+    {{ if eq $youtubeID "REPLACE_ME" }}
+      <section class="prose" style="max-width: 768px; margin: 0 auto;">
+        <p><strong>Video coming soon.</strong> Add a valid <code>youtube_id</code> in this trip’s front matter to show it here.</p>
+      </section>
+    {{ else }}
+      <div class="trip-embed trip-embed--video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/{{ $youtubeID }}?rel=0"
+          title="{{ .Title }}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+    {{ end }}
+  </section>
+{{ end }}
+

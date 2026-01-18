@@ -1,0 +1,15 @@
+{{ $mapEmbedURL := .Params.map_embed_url | default "" }}
+{{ if $mapEmbedURL }}
+  <section class="trip-map">
+    <h2>Map</h2>
+    <div class="trip-embed trip-embed--map">
+      <iframe
+        src="{{ $mapEmbedURL }}"
+        title="Trip map for {{ .Title }}"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
+  </section>
+{{ end }}
+

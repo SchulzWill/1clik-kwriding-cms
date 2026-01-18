@@ -1,0 +1,14 @@
+{{ $routeStoreURL := .Params.route_store_url | default "" }}
+{{ if $routeStoreURL }}
+  {{ $label := .Params.route_store_label | default "Get the full route" }}
+  <section class="trip-route-callout">
+    <div class="trip-route-callout__inner">
+      <h2>Full route available</h2>
+      <p>The full route with details of this trip is available for sale.</p>
+      <p>
+        <a class="trip-route-callout__button" href="{{ $routeStoreURL }}" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
+      </p>
+    </div>
+  </section>
+{{ end }}
+

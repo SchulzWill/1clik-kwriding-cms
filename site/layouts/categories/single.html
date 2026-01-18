@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{ partial "title.html" . }}
+
+  {{ partial "trip-video.html" . }}
+  {{ partial "trip-map.html" . }}
+
+  {{ with .Content }}
+    <section class="prose">
+      {{ . }}
+    </section>
+  {{ end }}
+
+  {{ partial "trip-gallery.html" . }}
+
+  {{ partial "related.html" . }}
+  {{ partial "trip-route-callout.html" . }}
+{{ end }}

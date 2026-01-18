@@ -3,6 +3,10 @@ date: 2024-02-01
 title: Pyrénées
 description: A coast-to-coast trip through the Pyrenees
 categories: ["long-trips"]
+youtube_id: "REPLACE_ME"
+map_embed_url: ""
+route_store_url: ""
+route_store_label: ""
 resources:
   - src: cover.jpg
     params:
