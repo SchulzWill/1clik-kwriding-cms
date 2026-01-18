@@ -3,6 +3,10 @@ date: 2024-01-01
 title: Italia Tour
 description: Our trip to Italy
 categories: ["long-trips"]
+youtube_id: "REPLACE_ME"
+map_embed_url: ""
+route_store_url: ""
+route_store_label: ""
 resources:
   - src: cover.jpg
     params:

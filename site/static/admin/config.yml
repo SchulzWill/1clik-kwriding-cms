@@ -56,6 +56,26 @@ collections:
         default: false
         required: false
         hint: "Hide from public listings (accessible by direct link only)"
+      - label: "YouTube Video ID"
+        name: "youtube_id"
+        widget: "string"
+        required: false
+        hint: "Example: dQw4w9WgXcQ (trip page will show this video as the hero)"
+      - label: "Map Embed URL"
+        name: "map_embed_url"
+        widget: "string"
+        required: false
+        hint: "Paste an iframe-ready embed URL (e.g., Google Maps 'Embed a map' URL)"
+      - label: "Route Store URL"
+        name: "route_store_url"
+        widget: "string"
+        required: false
+        hint: "Link to your external store checkout (Gumroad/Payhip/etc.)"
+      - label: "Route Button Label"
+        name: "route_store_label"
+        widget: "string"
+        required: false
+        hint: "Optional button text override (default: Get the full route)"
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -95,6 +115,26 @@ collections:
         default: false
         required: false
         hint: "Show this on the homepage?"
+      - label: "YouTube Video ID"
+        name: "youtube_id"
+        widget: "string"
+        required: false
+        hint: "Example: dQw4w9WgXcQ (trip page will show this video as the hero)"
+      - label: "Map Embed URL"
+        name: "map_embed_url"
+        widget: "string"
+        required: false
+        hint: "Paste an iframe-ready embed URL (e.g., Google Maps 'Embed a map' URL)"
+      - label: "Route Store URL"
+        name: "route_store_url"
+        widget: "string"
+        required: false
+        hint: "Link to your external store checkout (Gumroad/Payhip/etc.)"
+      - label: "Route Button Label"
+        name: "route_store_label"
+        widget: "string"
+        required: false
+        hint: "Optional button text override (default: Get the full route)"
       - label: "Body"
         name: "body"
         widget: "markdown"

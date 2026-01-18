@@ -13,28 +13,39 @@ menu:
 
 ## The Motorcycle
 
-*(Add details and photos of your bike here)*
-
-- **Make/Model:** 
-- **Year:**
-- **Modifications:**
+- **Make/Model:** BMW F750 GS 40 Years edition
+- **Year:** 2021
+- **Modifications:** Puig Extended screen + BMW GS Vario Bags
 
 ## Camera & Video Gear
 
-*(What you use to capture your adventures)*
 
-- **Camera:**
-- **Action cam:**
-- **Drone:**
+- **Camera:** Sony a5100
+- **Action cam:** Gopro Hero 9
+- **Drone:** Mavic Mini 3 Pro
 
 ## Riding Gear
 
-*(Helmet, jacket, boots, etc.)*
+*Will*
+
+- **Helmet:** LS2 FF396 -> Shoei GTAir II
+- **Jacket:** Spidi Traveler II
+- **Pants:** Spidi Traveler
+- **Gloves:** Alpinestars / Revit Goretex
+- **Boots:** Alpinestars
+
+*Kay*
+
+- **Helmet:** LS2 FF396 -> AGV K6
+- **Jacket:** Spidi Traveler II
+- **Pants:** Dainese
+- **Gloves:** Revit / Revit Goretex
+- **Boots:** Dainese
+
 
 ## Travel Essentials
 
-*(Luggage, camping gear, tools, etc.)*
+*Depends on the season*
 
 ---
 
-**Add photos** of your gear to this folder and they'll appear in the gallery!
